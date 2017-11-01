@@ -1,23 +1,36 @@
-let buttonStats = document.getElementById("btn-statistics");
+function split(str, delim) {
+  if (typeof delim === "undefined") {
+    return [str];
+  }
 
-buttonStats.addEventListener('click', function () {
-  console.log(buttonStats.value);
-}, false);
+  var result = [];
+  if (delim === '') {
+    // split the whole string into an array of letters
+    for (var i = 0, l = str.length; i < l; i++) {
+      result.push(str[i]);
+    }
+    return result;
+  }
 
-function splitInput() {
-  let input = "this is a test string";
-  let subSplit = input.substring(0);
-  let splitArr = [];
+  var pos = 0;
+  var strClone = str; // never update the passed argument, create a "clone"
 
-  for (let i = 0; i < input.length; i++) {
-    splitArr.push(subSplit[i]);
-    return splitArr;
-  };
+  pos = strClone.indexOf(delim);
+  while (pos > -1) {
+    // get word
+    var word = strClone.substr(0, pos);
+
+    // include word on our results array
+    result.push(word);
+
+    // change string (not the original one, just a clone) to remove the word that we found before (+ delimiter length)
+    strClone = strClone.substr(word.length + delim.length);
+
+    // update pos so while won't be infinite
+    pos = strClone.indexOf(delim);
+  }
+
+  // push the last result (while finish before the last result, so we have to do this manually)
+  result.push(strClone);
+  return result;
 }
-
-function calcChars(c) {
-  let cCalc = splitInput.splitArr;
-  console.log(c)
-}
-
-calcChars();
