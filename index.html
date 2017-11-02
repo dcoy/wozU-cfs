@@ -8,15 +8,30 @@
   <title>Text Statistics</title>
 </head>
 
+<style>
+  /* body {
+  } */
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  #text-results {
+  }
+</style>
+
 <body>
-  <div id="container">
+  <div class="container">
     <textarea name="text-input" id="" cols="50" rows="5"></textarea>
     <button id="btn-statistics" type="submit" onclick="splitInput(textValue)">Statistics</button>
-    <p>There are an average of <span id="avgWords"></span> words per sentence.</p>
-    <p>There are <span id="totalSpaces"></span> spaces in this text.</p>
-    <p>There are <span id="totalWords"></span> words in this text.</p>
-    <p>There are <span id="totalSent"></span> sentences in this text.</p>
-
+    <div id="text-results">
+      <p>There are an average of <span id="avgWords"></span> words per sentence.</p>
+      <p>There are <span id="totalSpaces"></span> spaces in this text.</p>
+      <p>There are <span id="totalWords"></span> words in this text.</p>
+      <p>There are <span id="totalSent"></span> sentences in this text.</p>
+    </div>
     <script src="script.js"></script>
   </div>
 </body>
