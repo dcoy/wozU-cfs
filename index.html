@@ -9,13 +9,14 @@
 </head>
 
 <body>
-  <div>
+  <div id="container">
     <textarea name="text-input" id="" cols="50" rows="5"></textarea>
-    <button id="btn-statistics" type="submit" onclick="splitInput()">Statistics</button>
-    <p id="avg-word"></p>
-    <p id="word-space"></p>
-    <p id="total-words"></p>
-    <p id="sentence"></p>
+    <button id="btn-statistics" type="submit" onclick="splitInput(textValue)">Statistics</button>
+    <p>There are an average of <span id="avgWords"></span> words per sentence.</p>
+    <p>There are <span id="totalSpaces"></span> spaces in this text.</p>
+    <p>There are <span id="totalWords"></span> words in this text.</p>
+    <p>There are <span id="totalSent"></span> sentences in this text.</p>
+
     <script src="script.js"></script>
   </div>
 </body>
