@@ -1,49 +1,47 @@
-
-// var textValue = textArea.value;
-
-// var avgWords = document.getElementById("avgWords");
-// var totalSpaces = document.getElementById("totalSpaces");
-// var totalWords = document.getElementById("totalWords");
-// var totalSent = document.getElementById("totalSent");
-
-// function splitInput(str, delim) {
-//   if (typeof delim === "undefined" | "null") {
-//     return [str];
-//   }
-
-//   var result = [];
-//   if (delim === '') {
-//     // split the whole string into an array of letters
-//     for (var i = 0, l = str.length; i < l; i++) {
-//       result.push(str[i]);
-//     }
-//     return result;
-//   }
-
-//   var pos = 0;
-//   var strClone = str; // never update the passed argument, create a "clone"
-
-//   pos = strClone.indexOf(delim);
-//   while (pos > -1) {
-//     // get word
-//     var word = strClone.substr(0, pos);
-
-//     // include word on our results array
-//     result.push(word);
-
-//     // change string (not the original one, just a clone) to remove the word that we found before (+ delimiter length)
-//     strClone = strClone.substr(word.length + delim.length);
-
-//     // update pos so while won't be infinite
-//     pos = strClone.indexOf(delim);
-//   }
-
-//   // push the last result (while finish before the last result, so we have to do this manually)
-//   result.push(strClone);
-//   return result;
-// }
-
 window.onload = function() {
   var input = document.getElementById("text-input");
-  console.log(input);
+  var btnStats = document.getElementById("btn-statistics");
+
+  var avgWords = 0;
+  var totalSpaces = 0;
+  var totalWords = 0;
+  var totalSent = 0;
+
+  btnStats.addEventListener('click', function () {
+    var textToCalc = input.value;
+    for(var i=0; i < textToCalc.length; i++) {
+      if(isSpace(textToCalc[i])) {
+        totalSpaces++;
+      } else if (countWords(textToCalc)) {
+        totalWords = countWords(textToCalc);
+      } else if (sentences(textToCalc)) {
+        totalSent = sentences(textToCalc); // Will not update totalSent to 7
+      }
+    }
+    console.log("Total spaces: " + totalSpaces);
+    console.log("Total words: " + totalWords);
+    console.log("Total sentences: " + totalSent);
+    console.log("Average words/sentence: " + avgWords);
+  });
+
+  function isSpace(spaces) {
+    var spaces = spaces.match(/[\s]+/g);
+    return spaces == ' ';
+  }
+
+  function isWord(text) {
+    var word = text.match(/[^\s]/g);
+    console.log(text);
+  }
+
+  function countWords(matches){
+    var matches = matches.match(/\w\w+/g);
+    return matches.length
+  }
+
+  function sentences(text) {
+    var text = text.match(/[^\.!\?]+[\.!\?]+/gi);
+    // console.log(text.length);
+    return text.length;
+  }
 }
