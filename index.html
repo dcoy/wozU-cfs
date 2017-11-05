@@ -9,14 +9,17 @@
 </head>
 
 <style>
-  /* body {
+  body {
   }
   .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  } */
+  }
+  #btn-statistics {
+    margin-top: 10px;
+  }
 </style>
 
 <body>
@@ -25,8 +28,8 @@
     <button id="btn-statistics" type="submit">Statistics</button>
     <div id="text-results">
       <p>There are an average of <span id="avgWords"></span> words per sentence.</p>
-      <p>There are <span name="totalSpaces"></span> spaces in this text.</p>
-      <p>There are <span name="totalWords"></span> words in this text.</p>
+      <p>There are <span id="totalSpaces"></span> spaces in this text.</p>
+      <p>There are <span id="totalWords"></span> words in this text.</p>
       <p>There are <span id="totalSent"></span> sentences in this text.</p>
     </div>
     <script src="script.js"></script>

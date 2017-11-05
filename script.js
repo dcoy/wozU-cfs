@@ -14,14 +14,18 @@ window.onload = function() {
         totalSpaces++;
       } else if (countWords(textToCalc)) {
         totalWords = countWords(textToCalc);
-      } else if (sentences(textToCalc)) {
-        totalSent = sentences(textToCalc); // Will not update totalSent to 7
       }
     }
-    console.log("Total spaces: " + totalSpaces);
-    console.log("Total words: " + totalWords);
-    console.log("Total sentences: " + totalSent);
-    console.log("Average words/sentence: " + avgWords);
+    totalSent = sentences(textToCalc);
+    avgWords = wordAverage(textToCalc);
+    document.getElementById("avgWords").innerHTML = avgWords;
+    document.getElementById("totalSpaces").innerHTML = totalSpaces;
+    document.getElementById("totalWords").innerHTML = totalWords;
+    document.getElementById("totalSent").innerHTML = totalSent;
+    // console.log("Total spaces: " + totalSpaces);
+    // console.log("Total words: " + totalWords);
+    // console.log("Total sentences: " + totalSent);
+    // console.log("Average words/sentence: " + avgWords);
   });
 
   function isSpace(spaces) {
@@ -41,7 +45,11 @@ window.onload = function() {
 
   function sentences(text) {
     var text = text.match(/[^\.!\?]+[\.!\?]+/gi);
-    // console.log(text.length);
     return text.length;
+  }
+
+  function wordAverage(text) {
+    var average = countWords(text) / sentences(text);
+    return average;
   }
 }
