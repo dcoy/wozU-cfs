@@ -22,10 +22,6 @@ window.onload = function() {
     document.getElementById("totalSpaces").innerHTML = totalSpaces;
     document.getElementById("totalWords").innerHTML = totalWords;
     document.getElementById("totalSent").innerHTML = totalSent;
-    // console.log("Total spaces: " + totalSpaces);
-    // console.log("Total words: " + totalWords);
-    // console.log("Total sentences: " + totalSent);
-    // console.log("Average words/sentence: " + avgWords);
   });
 
   function isSpace(spaces) {
