@@ -6,31 +6,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Text Statistics</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
 </head>
 
 <style>
-  body {
+  html, body {
+    margin: 0 auto;
+    width: 800px;
+    font-family: 'Roboto', sans-serif, monospace;
+    color: #fff;
+    background-color: #0e83cd;
+    letter-spacing: 1px;
   }
   .container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    flex-flow: column wrap-reverse;
+    padding-top: 100px;
   }
+  #text-area {
+    display: flex;
+  }
+  #text-input {
+    border: 3px solid #fff;
+    background: none;
+    color: #fff;
+    resize: none;
+  }
+  #text-input:focus {
+    border: 3px solid #fff;
+    background-color: #2199e4;
+    color: #fff;
+  }
+  
   #btn-statistics {
-    margin-top: 10px;
+    overflow: hidden;
+    align-content: center;
+    font-family: inherit;
+    font-size: relative;
+    background: none;
+    border: 3px solid #fff;
+    position: relative;
+    cursor: pointer;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 15px 15px;
+    font-weight: 300;
+    outline: none;
+    display: inline-block;
+    transition-property: all;
+  }
+  #btn-statistics:hover, #btn-statistics:active {
+    color: #0e84cd;
+    background: #fff;
+  }
+  #avgWords, #totalSpaces, #totalWords, #totalSent {
+    text-decoration: underline;
+    text-underline-position: auto;
   }
 </style>
 
 <body>
   <div class="container">
-    <textarea id="text-input" cols="50" rows="5"></textarea>
-    <button id="btn-statistics" type="submit">Statistics</button>
+    <h2>Please enter some text!</h2>
+    <div id="text-area">
+      <textarea id="text-input" cols="40" rows="5" required></textarea>
+      <button id="btn-statistics" type="submit">Statistics</button>
+    </div>
     <div id="text-results">
-      <p>There are an average of <span id="avgWords"></span> words per sentence.</p>
-      <p>There are <span id="totalSpaces"></span> spaces in this text.</p>
-      <p>There are <span id="totalWords"></span> words in this text.</p>
-      <p>There are <span id="totalSent"></span> sentences in this text.</p>
+        <p>There are an average of <span id="avgWords"></span> words per sentence.</p>
+        <p>There are <span id="totalSpaces"></span> spaces in this text.</p>
+        <p>There are <span id="totalWords"></span> words in this text.</p>
+        <p>There are <span id="totalSent"></span> sentences in this text.</p>
     </div>
     <script src="script.js"></script>
   </div>
