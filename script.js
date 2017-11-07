@@ -1,36 +1,51 @@
-function split(str, delim) {
-  if (typeof delim === "undefined") {
-    return [str];
-  }
+window.onload = function() {
+  var input = document.getElementById("text-input");
+  var btnStats = document.getElementById("btn-statistics");
 
-  var result = [];
-  if (delim === '') {
-    // split the whole string into an array of letters
-    for (var i = 0, l = str.length; i < l; i++) {
-      result.push(str[i]);
+  var avgWords = 0;
+  var totalSpaces = 0;
+  var totalWords = 0;
+  var totalSent = 0;
+
+  btnStats.addEventListener('click', function () {
+    var textToCalc = input.value;
+    for(var i=0; i < textToCalc.length; i++) {
+      if(isSpace(textToCalc[i])) {
+        totalSpaces++;
+      } else if (countWords(textToCalc)) {
+        totalWords = countWords(textToCalc);
+      }
     }
-    return result;
+    totalSent = sentences(textToCalc);
+    avgWords = wordAverage(textToCalc);
+    document.getElementById("avgWords").innerHTML = avgWords;
+    document.getElementById("totalSpaces").innerHTML = totalSpaces;
+    document.getElementById("totalWords").innerHTML = totalWords;
+    document.getElementById("totalSent").innerHTML = totalSent;
+  });
+
+  function isSpace(spaces) {
+    var spaces = spaces.match(/[\s]+/g);
+    return spaces == ' ';
   }
 
-  var pos = 0;
-  var strClone = str; // never update the passed argument, create a "clone"
-
-  pos = strClone.indexOf(delim);
-  while (pos > -1) {
-    // get word
-    var word = strClone.substr(0, pos);
-
-    // include word on our results array
-    result.push(word);
-
-    // change string (not the original one, just a clone) to remove the word that we found before (+ delimiter length)
-    strClone = strClone.substr(word.length + delim.length);
-
-    // update pos so while won't be infinite
-    pos = strClone.indexOf(delim);
+  function isWord(text) {
+    var word = text.match(/[^\s]/g);
+    console.log(text);
   }
 
-  // push the last result (while finish before the last result, so we have to do this manually)
-  result.push(strClone);
-  return result;
+  function countWords(matches){
+    var matches = matches.match(/\w\w+/g);
+    return matches.length
+  }
+
+  function sentences(text) {
+    var text = text.match(/[^\.!\?]+[\.!\?]+/gi);
+    return text.length;
+  }
+
+  function wordAverage(text) {
+    var average = countWords(text) / sentences(text);
+    return average;
+  }
 }
