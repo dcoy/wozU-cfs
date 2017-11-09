@@ -29,11 +29,6 @@ window.onload = function() {
     return spaces == ' ';
   }
 
-  function isWord(text) {
-    var word = text.match(/[^\s]/g);
-    console.log(text);
-  }
-
   function countWords(matches){
     var matches = matches.match(/\w\w+/g);
     return matches.length
